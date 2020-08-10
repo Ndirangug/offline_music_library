@@ -5,7 +5,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.streams.toList
 
-enum class FileTypes{
+enum class FileTypes {
     MP3, OGG, WAV, ACC
 }
 
@@ -14,18 +14,18 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
     private val listOfFilePaths = mutableListOf<String>()
 
 
-    fun loadFilesToBeProcessed(): List<MusicFile>  {
+    fun loadFilesToBeProcessed(): List<MusicFile> {
         //TODO implement loadFilesToBeProcessed
 
         val listOfFiles = fetchListOfFilePaths()
         val unsupportedAndSupportedMap = filterFilesAccordingToSupportedAudioFormats(listOfFiles)
         println(unsupportedAndSupportedMap.toString())
         return emptyList()
-        
+
     }
 
 
-    fun fetchListOfFilePaths(): List<Path> {
+    private fun fetchListOfFilePaths(): List<Path> {
 
         val directoryPath = Paths.get(this.location)
 
@@ -34,28 +34,40 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
             .toList()
     }
 
-    fun filterFilesAccordingToSupportedAudioFormats(filePathsList: List<Path>): Map<String, List<Path>>{
-        //TODO confirm filetypes that support audio tagging and filter
+    private fun filterFilesAccordingToSupportedAudioFormats(filePathsList: List<Path>): Map<String, List<Path>> {
+
         val filesWithSupportedFormat = mutableListOf<Path>()
         val filesWithUnSupportedFormat = mutableListOf<Path>()
 
-        filePathsList.forEach { item ->
+        filePathsList.forEach { filePath ->
             run {
-                if (item.toString().endsWith("mp3")) { //TODO implement regexp
-                    filesWithSupportedFormat.add(item)
-                } else {
-                    filesWithUnSupportedFormat.add(item)
+                var hasSupportedFileType = false
+
+                for (fileType in allowableFileTypes) {
+                    if (filePath.endsWith(fileType.toString())) {
+                        hasSupportedFileType = true
+                        filesWithSupportedFormat.add(filePath)
+                        break
+                    }
+                }
+
+                if (!hasSupportedFileType) {
+                    filesWithUnSupportedFormat.add(filePath)
                 }
             }
+
         }
 
-        return mapOf("SUPPORTED" to filesWithSupportedFormat, "UNSUPPORTED" to filesWithUnSupportedFormat)
+        return mapOf(
+            "FILES_WITH_SUPPORTED_FILE_FORMAT" to filesWithSupportedFormat,
+            "FILES_WITH_UNSUPPORTED_FILE_FORMAT" to filesWithUnSupportedFormat
+        )
     }
 
     fun createMusicFileObjects(): MutableList<MusicFile> {
         val musicList = mutableListOf<MusicFile>()
 
-        for (path: String in listOfFilePaths){
+        for (path: String in listOfFilePaths) {
             //TODO implement createMusicFileObjects
         }
         return musicList
