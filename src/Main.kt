@@ -12,7 +12,7 @@ fun main() {
 
     val musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
-    musicFilesLoader.loadFilesToBeProcessed()
+    musicFilesLoader.getMusicFilesToBeProcessed()
 
 
 }

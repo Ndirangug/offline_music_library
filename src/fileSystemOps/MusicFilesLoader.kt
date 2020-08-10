@@ -12,17 +12,25 @@ enum class FileTypes {
 
 class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<FileTypes>) {
 
-    private val listOfFilePaths = mutableListOf<Path>()
+    private lateinit var listOfFilePathsToBeProcessed: MutableList<Path>
 
 
-    fun loadFilesToBeProcessed(): List<MusicFile> {
+    fun getMusicFilesToBeProcessed(): MutableList<MusicFile> {
+        populateListOfFilePathsToBeProcessed()
+
+        return createMusicFileObjectsFromListOfFilePathsToBeProcessed()
+
+    }
+
+    private fun populateListOfFilePathsToBeProcessed() {
         //TODO implement loadFilesToBeProcessed
         // for those in filesWithUnSupportedFormat, give optins to handle them if they're valid audio files, else discard, maybe with warning
 
         val listOfFiles = fetchListOfFilePaths()
         val unsupportedAndSupportedMap = filterFilesAccordingToSupportedAudioFormats(listOfFiles)
+        listOfFilePathsToBeProcessed = unsupportedAndSupportedMap["FILES_WITH_SUPPORTED_FILE_FORMAT"] as MutableList<Path>
+
         println(unsupportedAndSupportedMap.toString())
-        return emptyList()
 
     }
 
@@ -67,10 +75,10 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
         )
     }
 
-    fun createMusicFileObjects(): MutableList<MusicFile> {
+    fun createMusicFileObjectsFromListOfFilePathsToBeProcessed(): MutableList<MusicFile> {
         val musicList = mutableListOf<MusicFile>()
 
-        for (path: Path in listOfFilePaths) {
+        for (path: Path in listOfFilePathsToBeProcessed) {
             //TODO implement createMusicFileObjects
             val tags = readID3TagsFromFilePath(path)
 
@@ -91,7 +99,7 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
         return musicList
     }
 
-    fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
+    private fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
         //TODO implement createMusicFileObjects
 
         return emptyMap<String, String>() as HashMap<String, String>
