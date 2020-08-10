@@ -3,6 +3,7 @@ package offlineMusicLibrary.fileSystemOps
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.time.Year
 import kotlin.streams.toList
 
 enum class FileTypes {
@@ -11,7 +12,7 @@ enum class FileTypes {
 
 class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<FileTypes>) {
 
-    private val listOfFilePaths = mutableListOf<String>()
+    private val listOfFilePaths = mutableListOf<Path>()
 
 
     fun loadFilesToBeProcessed(): List<MusicFile> {
@@ -69,9 +70,31 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
     fun createMusicFileObjects(): MutableList<MusicFile> {
         val musicList = mutableListOf<MusicFile>()
 
-        for (path: String in listOfFilePaths) {
+        for (path: Path in listOfFilePaths) {
             //TODO implement createMusicFileObjects
+            val tags = readID3TagsFromFilePath(path)
+
+            musicList.add(
+                MusicFile(
+                    path,
+                    tags.getOrDefault("title", ""),
+                    tags.getOrDefault("album", ""),
+                    tags.getOrDefault("albumArtist", ""),
+                    listOf(tags.getOrDefault("contributingArtists", "")),
+                    tags.getOrDefault("genre", ""),
+                    Year.parse(tags.getOrDefault("year", "")),
+                    tags.getOrDefault("trackNumber", "").toInt()
+                )
+            )
         }
+
         return musicList
+    }
+
+    fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
+        //TODO implement createMusicFileObjects
+
+        return emptyMap<String, String>() as HashMap<String, String>
+
     }
 }

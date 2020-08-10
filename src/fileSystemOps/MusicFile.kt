@@ -1,9 +1,10 @@
 package offlineMusicLibrary.fileSystemOps
 
+import java.nio.file.Path
 import java.time.Year
 
 data class MusicFile(
-    val filePath: String,
+    val filePath: Path,
     var title: String,
     var album: String,
     var albumArtist: String,
