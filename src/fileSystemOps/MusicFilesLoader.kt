@@ -75,7 +75,7 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
         )
     }
 
-    fun createMusicFileObjectsFromListOfFilePathsToBeProcessed(): MutableList<MusicFile> {
+    private fun createMusicFileObjectsFromListOfFilePathsToBeProcessed(): MutableList<MusicFile> {
         val musicList = mutableListOf<MusicFile>()
 
         for (path: Path in listOfFilePathsToBeProcessed) {
