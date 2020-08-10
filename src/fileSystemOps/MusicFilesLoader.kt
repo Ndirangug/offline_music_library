@@ -16,6 +16,7 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
 
     fun loadFilesToBeProcessed(): List<MusicFile> {
         //TODO implement loadFilesToBeProcessed
+        // for those in filesWithUnSupportedFormat, give optins to handle them if they're valid audio files, else discard, maybe with warning
 
         val listOfFiles = fetchListOfFilePaths()
         val unsupportedAndSupportedMap = filterFilesAccordingToSupportedAudioFormats(listOfFiles)
@@ -44,7 +45,8 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
                 var hasSupportedFileType = false
 
                 for (fileType in allowableFileTypes) {
-                    if (filePath.endsWith(fileType.toString())) {
+                    if (filePath.toString().toLowerCase().endsWith(fileType.toString().toLowerCase())) {
+
                         hasSupportedFileType = true
                         filesWithSupportedFormat.add(filePath)
                         break
