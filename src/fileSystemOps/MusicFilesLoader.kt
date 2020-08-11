@@ -7,7 +7,7 @@ import java.time.Year
 import kotlin.streams.toList
 
 enum class FileTypes {
-    MP3, OGG, WAV, ACC
+    MP3, OGG, WAV, ACC, MP4, M4A, M4P, WMA, FLAC, AIFF, DSF
 }
 
 class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<FileTypes>) {
@@ -31,6 +31,7 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
         listOfFilePathsToBeProcessed = unsupportedAndSupportedMap["FILES_WITH_SUPPORTED_FILE_FORMAT"] as MutableList<Path>
 
         println(unsupportedAndSupportedMap.toString())
+
 
     }
 
@@ -102,7 +103,6 @@ class MusicFilesLoader(var location: String, var allowableFileTypes: HashSet<Fil
     private fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
         //TODO implement createMusicFileObjects
 
-        return emptyMap<String, String>() as HashMap<String, String>
-
+        return hashMapOf()
     }
 }
