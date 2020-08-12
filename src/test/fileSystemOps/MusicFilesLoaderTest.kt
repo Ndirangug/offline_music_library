@@ -8,7 +8,7 @@ import java.nio.file.Paths
 
 internal class MusicFilesLoaderTest {
 
-    private lateinit var folderWithFiles: String
+    private val folderWithFiles = Paths.get("test_assets/").toAbsolutePath().toString()
     private lateinit var allowableFileTypes: HashSet<FileTypes>
     private lateinit var musicFilesLoader: MusicFilesLoader
 
@@ -30,7 +30,6 @@ internal class MusicFilesLoaderTest {
     }
 
     private fun setUp1() {
-        folderWithFiles = Paths.get("test_assets/").toAbsolutePath().toString()
         allowableFileTypes = hashSetOf(FileTypes.MP3, FileTypes.OGG)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
@@ -55,7 +54,6 @@ internal class MusicFilesLoaderTest {
     }
 
     private fun setUp2() {
-        folderWithFiles = Paths.get("test_assets/").toAbsolutePath().toString()
         allowableFileTypes = hashSetOf(FileTypes.MP3)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
