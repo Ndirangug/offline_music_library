@@ -41,6 +41,7 @@ internal class MusicFilesLoaderTest {
     fun correctlyFiltersSupportedAndUnSupported() {
         setUp2()
 
+        // expect musicFilesLoader to filter out .ogg as we specified in setUp2()
         val expected = mutableListOf(
             Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath(),
             Paths.get("test_assets/14 Bethel Music, Bethany Wohrle & Dante Bowe - Prepare The Way.mp3").toAbsolutePath()
