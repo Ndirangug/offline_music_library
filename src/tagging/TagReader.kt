@@ -105,6 +105,8 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
                     hashMap[key] = "0000"
                 } else if (key == "trackNumber" && value == "") {
                     hashMap[key] = "0"
+                } else if (value.toLowerCase().contains("unknown")) {
+                    hashMap[key] = ""
                 }
 
             }
