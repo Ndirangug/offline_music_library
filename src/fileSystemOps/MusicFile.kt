@@ -5,13 +5,13 @@ import java.time.Year
 
 data class MusicFile(
     val filePath: Path,
-    var title: String,
-    var album: String,
-    var albumArtist: String,
-    var contributingArtists: List<String>,
-    var genre: String,
-    var year: Year,
-    var trackNumber: Int
+    val title: String,
+    val album: String,
+    val albumArtist: String,
+    val contributingArtists: List<String>,
+    val genre: String,
+    val year: Year,
+    val trackNumber: Int
 
     ) {
 
