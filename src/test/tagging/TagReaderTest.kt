@@ -37,7 +37,8 @@ internal class TagReaderTest {
                 contributingArtists = listOf<String>(),
                 genre = "",
                 year = Year.parse("0000"),
-                trackNumber = 0
+                trackNumber = 0,
+                numberOfEmptyFields = 7
             ),
             MusicFile(
                 filePath = Paths.get("test_assets/14 Bethel Music, Bethany Wohrle & Dante Bowe - Prepare The Way.mp3").toAbsolutePath(),
@@ -47,7 +48,8 @@ internal class TagReaderTest {
                 contributingArtists = listOf<String>("Bethel Music", "Bethany Wohrle", "Dante Bowe" ),
                 genre = "",
                 year = Year.parse("2020"),
-                trackNumber = 14
+                trackNumber = 14,
+                numberOfEmptyFields = 1
             ),
             MusicFile(
                 filePath = Paths.get("test_assets/Cory_Asbury_Endless_Alleluia.hd.ogg").toAbsolutePath(),
@@ -57,7 +59,8 @@ internal class TagReaderTest {
                 contributingArtists = listOf<String>(),
                 genre = "",
                 year = Year.parse("0000"),
-                trackNumber = 0
+                trackNumber = 0,
+                numberOfEmptyFields = 7
             )
         )
 

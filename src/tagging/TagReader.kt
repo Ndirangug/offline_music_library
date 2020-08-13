@@ -27,8 +27,11 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
                     tags.getOrDefault("albumArtist", ""),
                     tags.getOrDefault("contributingArtists", "").split('/'),
                     tags.getOrDefault("genre", ""),
-                    Year.parse(tags.getOrDefault("year", "0000").split('-')[0]), // tag comes in the format yyyy-mm-dd so split it with '-' as the delimiter and take only the first sclice i.e  YYYY
-                    tags.getOrDefault("trackNumber", "0").toInt()
+                    Year.parse(
+                        tags.getOrDefault("year", "0000").split('-')[0]
+                    ), // tag comes in the format yyyy-mm-dd so split it with '-' as the delimiter and take only the first sclice i.e  YYYY
+                    tags.getOrDefault("trackNumber", "0").toInt(),
+                    tags.getOrDefault("numberOfEmptyFields", "0").toInt()
                 )
             )
         }
@@ -69,13 +72,15 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
                 "contributingArtists" to tag.getFirst(FieldKey.ARTISTS),
                 "genre" to tag.getFirst(FieldKey.GENRE),
                 "year" to tag.getFirst(FieldKey.YEAR),
-                "trackNumber" to tag.getFirst(FieldKey.TRACK)
+                "trackNumber" to tag.getFirst(FieldKey.TRACK),
+                "numberOfEmptyFields" to "0"
             )
         } else {
             createHashMapOfEmptyTags()
         }
 
         validateHashMapOfTags(hashMap)
+        updateNumberOfEmptyFields(hashMap)
         return hashMap
     }
 
@@ -87,7 +92,8 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
             "contributingArtists" to "",
             "genre" to "",
             "year" to "0000",
-            "trackNumber" to "0"
+            "trackNumber" to "0",
+            "numberOfEmptyFields" to "7"
         )
     }
 
@@ -103,6 +109,20 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
 
             }
         }
+    }
+
+    private fun updateNumberOfEmptyFields(hashMapOfTags: HashMap<String, String>) {
+        hashMapOfTags["numberOfEmptyFields"] = countEmptyTagFields(hashMapOfTags).toString()
+    }
+
+    private fun countEmptyTagFields(hashMapOfTags: HashMap<String, String>): Int {
+        var count = 0
+
+        for (entry in hashMapOfTags) {
+            if ((entry.value == "" || entry.value == "0" || entry.value == "0000") && (entry.key != "numberOfEmptyFields")) //don't include key 'numberOfEmptyFields' in count
+                count++
+        }
+        return count
     }
 
 
