@@ -11,8 +11,8 @@ data class MusicFile(
     val contributingArtists: List<String>,
     val genre: String,
     val year: Year,
-    val trackNumber: Int
-
+    val trackNumber: Int,
+    var numberOfEmptyFields: Int
     ) {
 
 }
