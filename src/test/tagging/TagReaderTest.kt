@@ -1,5 +1,6 @@
 package tagging
 
+import assertions.IMusicListAssertions
 import offlineMusicLibrary.fileSystemOps.FileTypes
 import offlineMusicLibrary.fileSystemOps.MusicFile
 import offlineMusicLibrary.fileSystemOps.MusicFilesLoader
@@ -11,7 +12,7 @@ import java.nio.file.Paths
 import java.time.Year
 import java.util.*
 
-internal class TagReaderTest {
+internal class TagReaderTest : IMusicListAssertions {
 
 
 
@@ -68,13 +69,6 @@ internal class TagReaderTest {
 
         assertListEqual(actual, expected)
 
-    }
-
-    private fun assertListEqual(actual: MutableList<MusicFile>, expected: MutableList<MusicFile>) {
-        for (i in actual.indices) {
-            assertEquals(expected[i].toString(), actual[i].toString())
-            //TODO  maybe find a more effecient way for this
-        }
     }
 
     private fun setUp(){
