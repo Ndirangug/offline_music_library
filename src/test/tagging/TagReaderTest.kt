@@ -5,7 +5,6 @@ import offlineMusicLibrary.fileSystemOps.FileTypes
 import offlineMusicLibrary.fileSystemOps.MusicFile
 import offlineMusicLibrary.fileSystemOps.MusicFilesLoader
 import offlineMusicLibrary.tagging.TagReader
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -67,7 +66,7 @@ internal class TagReaderTest : IMusicListAssertions {
 
         val actual = TagReader(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
 
-        assertListEqual(actual, expected)
+        assertListEqual(expected, actual)
 
     }
 
