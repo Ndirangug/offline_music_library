@@ -15,7 +15,7 @@ internal class MusicFilesLoaderTest {
 
     @Test
     fun getMusicFilesToBeProcessedReturnsAlistOfPathsFromDirectory() {
-        setUp1()
+        setUpAllowMp3Ogg()
 
         val expected = mutableListOf(
             Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath(),
@@ -29,7 +29,7 @@ internal class MusicFilesLoaderTest {
 
     }
 
-    private fun setUp1() {
+    private fun setUpAllowMp3Ogg() {
         allowableFileTypes = hashSetOf(FileTypes.MP3, FileTypes.OGG)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
@@ -38,7 +38,7 @@ internal class MusicFilesLoaderTest {
 
     @Test
     fun correctlyFiltersSupportedAndUnSupported() {
-        setUp2()
+        setUpAllowOnlyMp3()
 
         // expect musicFilesLoader to filter out .ogg as we specified in setUp2()
         val expected = mutableListOf(
@@ -53,7 +53,7 @@ internal class MusicFilesLoaderTest {
 
     }
 
-    private fun setUp2() {
+    private fun setUpAllowOnlyMp3() {
         allowableFileTypes = hashSetOf(FileTypes.MP3)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
