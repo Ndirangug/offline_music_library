@@ -66,11 +66,15 @@ internal class TagReaderTest {
 
         val actual = TagReader(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
 
-        for (i in actual.indices){
+        assertListEqual(actual, expected)
+
+    }
+
+    private fun assertListEqual(actual: MutableList<MusicFile>, expected: MutableList<MusicFile>) {
+        for (i in actual.indices) {
             assertEquals(expected[i].toString(), actual[i].toString())
             //TODO  maybe find a more effecient way for this
         }
-
     }
 
     private fun setUp(){
