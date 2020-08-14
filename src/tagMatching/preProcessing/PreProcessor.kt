@@ -6,8 +6,8 @@ class PreProcessor() {
 
     companion object{
         fun sortLeastTaggedToMostTagged(musicList: MutableList<MusicFile>): MutableList<MusicFile> {
+            musicList.sortByDescending { it.numberOfEmptyFields }
 
-            //TODO implement this
             return musicList
         }
 
