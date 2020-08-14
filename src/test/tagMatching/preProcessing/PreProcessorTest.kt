@@ -13,7 +13,7 @@ import java.time.Year
 internal class PreProcessorTest: IMusicListAssertions{
 
     @Test
-    fun sortMusicListFromLeastTaggedToMostTagged(): Unit {
+    fun sortMusicListFromLeastTaggedToMostTagged() {
         val unSortedList = setUpUnSortedList()
 
         val expected = mutableListOf(
