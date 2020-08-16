@@ -12,7 +12,7 @@ data class MusicFile(
     val genre: String,
     val year: Year,
     val trackNumber: Int,
+    var trackLength: String,
     var numberOfEmptyFields: Int
-    ) {
 
-}
+    )

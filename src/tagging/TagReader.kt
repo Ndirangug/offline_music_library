@@ -1,6 +1,7 @@
 package offlineMusicLibrary.tagging
 
 import offlineMusicLibrary.fileSystemOps.MusicFile
+import org.jaudiotagger.audio.AudioFile
 import org.jaudiotagger.audio.AudioFileIO
 import org.jaudiotagger.tag.FieldKey
 import org.jaudiotagger.tag.Tag
@@ -31,6 +32,7 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
                         tags.getOrDefault("year", "0000").split('-')[0]
                     ), // tag comes in the format yyyy-mm-dd so split it with '-' as the delimiter and take only the first sclice i.e  YYYY
                     tags.getOrDefault("trackNumber", "0").toInt(),
+                    tags.getOrDefault("trackLength", ""),
                     tags.getOrDefault("numberOfEmptyFields", "0").toInt()
                 )
             )
@@ -52,7 +54,7 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
         return try {
             attemptToCreateHashMapFromExistingTags(fileHandle)
         } catch (e: org.jaudiotagger.audio.exceptions.CannotReadException) {
-            hashMapOfTags = createHashMapOfEmptyTags()
+            hashMapOfTags = createHashMapOfEmptyTags(fileHandle)
             validateHashMapOfTags(hashMapOfTags)
             hashMapOfTags
         }
@@ -64,6 +66,7 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
         val f = AudioFileIO.read(fileHandle)
         val tag: Tag? = f.tag
 
+
         hashMap = if (tag != null) {
             hashMapOf(
                 "title" to tag.getFirst(FieldKey.TITLE),
@@ -73,10 +76,11 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
                 "genre" to tag.getFirst(FieldKey.GENRE),
                 "year" to tag.getFirst(FieldKey.YEAR),
                 "trackNumber" to tag.getFirst(FieldKey.TRACK),
-                "numberOfEmptyFields" to "0"
+                "numberOfEmptyFields" to "0",
+                "trackLength" to tryToReadTrackLength(f)
             )
         } else {
-            createHashMapOfEmptyTags()
+            createHashMapOfEmptyTags(fileHandle)
         }
 
         validateHashMapOfTags(hashMap)
@@ -84,17 +88,50 @@ class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
         return hashMap
     }
 
-    private fun createHashMapOfEmptyTags(): HashMap<String, String> {
-        return hashMapOf(
-            "title" to "",
-            "album" to "",
-            "albumArtist" to "",
-            "contributingArtists" to "",
-            "genre" to "",
-            "year" to "0000",
-            "trackNumber" to "0",
-            "numberOfEmptyFields" to "7"
-        )
+
+
+    private fun createHashMapOfEmptyTags(f: File): HashMap<String, String> {
+        return  try {
+            val audioFile = AudioFileIO.read(f)
+
+            hashMapOf(
+                "title" to "",
+                "album" to "",
+                "albumArtist" to "",
+                "contributingArtists" to "",
+                "genre" to "",
+                "year" to "0000",
+                "trackNumber" to "0",
+                "trackLength" to tryToReadTrackLength(audioFile),
+                "numberOfEmptyFields" to "7"
+            )
+
+        }catch (e: Exception){
+            hashMapOf(
+                "title" to "",
+                "album" to "",
+                "albumArtist" to "",
+                "contributingArtists" to "",
+                "genre" to "",
+                "year" to "0000",
+                "trackNumber" to "0",
+                "trackLength" to "",
+                "numberOfEmptyFields" to "8"
+            )
+        }
+
+
+
+    }
+
+    private fun tryToReadTrackLength(audioFile: AudioFile?): String {
+        return try {
+            val audioHeader = audioFile?.audioHeader
+            audioHeader?.trackLength?.toString() ?: ""
+
+        } catch (e: Exception) {
+            ""
+        }
     }
 
     private fun validateHashMapOfTags(hashMap: HashMap<String, String>) {
