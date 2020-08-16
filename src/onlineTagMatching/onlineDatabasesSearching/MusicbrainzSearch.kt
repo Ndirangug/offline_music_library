@@ -2,21 +2,11 @@ package offlineMusicLibrary.onlineTagMatching.onlineDatabasesSearching
 
 import offlineMusicLibrary.fileSystemOps.MusicFile
 
-class MusicbrainzSearch: DatabaseSearch() {
+class MusicbrainzSearch{
 
-    fun Companion.attemptRetrieveMetaTags(musicFile: MusicFile): MusicFile {
-        val searchResults = search(musicFile)
-        update(musicFile)
+    companion object: DatabaseSearch{
 
-        return musicFile
     }
-
-    private fun Companion.search(musicFile: MusicFile): HashMap<String, String> {
-
-        return hashMapOf()
-    }
-
-    private fun Companion.update(musicFile: MusicFile) {}
 
 
 }
