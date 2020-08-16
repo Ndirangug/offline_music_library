@@ -18,17 +18,6 @@ internal class PreProcessorTest: IMusicListAssertions{
 
         val expected = mutableListOf(
             MusicFile(
-                filePath = Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath(),
-                title = "",
-                album = "",
-                albumArtist = "",
-                contributingArtists = listOf<String>(),
-                genre = "",
-                year = Year.parse("0000"),
-                trackNumber = 0,
-                numberOfEmptyFields = 7
-            ),
-            MusicFile(
                 filePath = Paths.get("test_assets/Cory_Asbury_Endless_Alleluia.hd.ogg").toAbsolutePath(),
                 title = "",
                 album = "",
@@ -37,8 +26,25 @@ internal class PreProcessorTest: IMusicListAssertions{
                 genre = "",
                 year = Year.parse("0000"),
                 trackNumber = 0,
-                numberOfEmptyFields = 7
+                trackLength = "",
+                numberOfEmptyFields = 8
+
             ),
+
+            MusicFile(
+                filePath = Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath(),
+                title = "",
+                album = "",
+                albumArtist = "",
+                contributingArtists = listOf<String>(),
+                genre = "",
+                year = Year.parse("0000"),
+                trackNumber = 0,
+                trackLength = "546",
+                numberOfEmptyFields = 7
+
+            ),
+
             MusicFile(
                 filePath = Paths.get("test_assets/14 Bethel Music, Bethany Wohrle & Dante Bowe - Prepare The Way.mp3").toAbsolutePath(),
                 title = "Prepare The Way",
@@ -48,7 +54,9 @@ internal class PreProcessorTest: IMusicListAssertions{
                 genre = "",
                 year = Year.parse("2020"),
                 trackNumber = 14,
+                trackLength = "321",
                 numberOfEmptyFields = 1
+
             )
         )
 
@@ -67,7 +75,7 @@ internal class PreProcessorTest: IMusicListAssertions{
     }
 
     @Test
-    fun breakFileNameIntoChunks(): Unit {
+    fun breakFileNameIntoChunks() {
         val fileName = "(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3"
 
 
