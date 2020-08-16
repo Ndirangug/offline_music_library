@@ -9,5 +9,5 @@ import offlineMusicLibrary.tagging.TagReader
  *
  */
 fun main() {
-
+    //TODO replace all map to with the more effecient alternative
 }
