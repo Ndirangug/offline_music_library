@@ -5,7 +5,8 @@ import offlineMusicLibrary.fileSystemOps.MusicFile
 interface DatabaseSearch {
     fun attemptRetrieveMetaTags(musicFile: MusicFile): MusicFile {
         val searchResults = search(musicFile)
-        update(musicFile)
+        updateMusicFile(musicFile, searchResults)
+
         return musicFile
     }
 
@@ -13,5 +14,5 @@ interface DatabaseSearch {
         return hashMapOf()
     }
 
-    fun update(musicFile: MusicFile) {}
+    fun updateMusicFile(musicFile: MusicFile, searchResults: HashMap<String, String>) {}
 }
