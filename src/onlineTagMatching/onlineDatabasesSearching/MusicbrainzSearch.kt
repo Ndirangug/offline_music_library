@@ -11,10 +11,12 @@ class MusicbrainzSearch: DatabaseSearch() {
         return musicFile
     }
 
-    fun Companion.search(musicFile: MusicFile): HashMap<String, String> {
+    private fun Companion.search(musicFile: MusicFile): HashMap<String, String> {
 
         return hashMapOf()
     }
 
-    fun Companion.update(musicFile: MusicFile) {}
+    private fun Companion.update(musicFile: MusicFile) {}
+
+
 }
