@@ -1,4 +1,4 @@
-package offlineMusicLibrary.tagMatching.preProcessing
+package offlineMusicLibrary.onlineTagMatching.preProcessing
 
 import offlineMusicLibrary.fileSystemOps.MusicFile
 

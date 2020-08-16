@@ -1,10 +1,10 @@
-package tagMatching.preProcessing
+package onlineTagMatching.preProcessing
 
 import assertions.IMusicListAssertions
 import offlineMusicLibrary.fileSystemOps.FileTypes
 import offlineMusicLibrary.fileSystemOps.MusicFile
 import offlineMusicLibrary.fileSystemOps.MusicFilesLoader
-import offlineMusicLibrary.tagMatching.preProcessing.PreProcessor
+import offlineMusicLibrary.onlineTagMatching.preProcessing.PreProcessor
 import offlineMusicLibrary.tagging.TagReader
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
@@ -68,28 +68,11 @@ internal class PreProcessorTest: IMusicListAssertions{
 
     @Test
     fun breakFileNameIntoChunks(): Unit {
-        val fileName1 = "Cory_Asbury_Endless_Alleluia.hd.ogg"
-        val fileName2 = "(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3"
+        val fileName = "(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3"
 
-        val expected1 = listOf(
-            "cory",
-            "asbury",
-            "endless",
-            "alleluia",
-            "hd",
-            "cory asbury",
-            "asbury endless",
-            "endless alleluia",
-            "alleluia hd",
-            "cory asbury endless",
-            "asbury endless alleluia",
-            "endless alleluia hd",
-            "cory asbury endless alleluia",
-            "asbury endless alleluia hd",
-            "cory asbury endless alleluia hd"
-        )
 
-        val expected2 = listOf(
+
+        val expected = listOf(
             "man",
             "of",
             "your",
@@ -197,13 +180,12 @@ internal class PreProcessorTest: IMusicListAssertions{
             "man of your word feat chandler moore kj scriven maverick city tribl youtube converted"
         )
 
-        val actual1 = PreProcessor.breakFileNameIntoChunks(fileName1)
-        println(actual1)
-        val actual2 = PreProcessor.breakFileNameIntoChunks(fileName2)
-        println(actual2)
 
-        assertListEqual<String>(expected1, actual1)
-        assertListEqual<String>(expected2, actual2)
+        val actual = PreProcessor.breakFileNameIntoChunks(fileName)
+
+
+
+        assertListEqual<String>(expected, actual)
     }
 
 
