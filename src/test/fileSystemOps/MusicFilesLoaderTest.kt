@@ -33,7 +33,6 @@ internal class MusicFilesLoaderTest {
         allowableFileTypes = hashSetOf(FileTypes.MP3, FileTypes.OGG)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
-        println(folderWithFiles)
     }
 
     @Test
@@ -57,7 +56,7 @@ internal class MusicFilesLoaderTest {
         allowableFileTypes = hashSetOf(FileTypes.MP3)
         musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
 
-        println(folderWithFiles)
+
     }
 
 }
