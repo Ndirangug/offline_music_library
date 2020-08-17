@@ -2,7 +2,7 @@ package offlineMusicLibrary.onlineTagMatching.onlineDatabasesSearching
 
 import offlineMusicLibrary.fileSystemOps.MusicFile
 
-interface DatabaseSearch {
+interface IDatabaseSearch {
     fun attemptRetrieveMetaTags(musicFile: MusicFile): MusicFile {
         val searchResults = search(musicFile)
         updateMusicFile(musicFile, searchResults)
