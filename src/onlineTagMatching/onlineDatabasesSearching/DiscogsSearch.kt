@@ -2,5 +2,5 @@ package offlineMusicLibrary.onlineTagMatching.onlineDatabasesSearching
 
 class DiscogsSearch {
 
-    companion object: DatabaseSearch{}
+    companion object: IDatabaseSearch{}
 }

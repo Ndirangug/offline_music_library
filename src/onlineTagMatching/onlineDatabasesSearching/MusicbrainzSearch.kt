@@ -4,7 +4,7 @@ import offlineMusicLibrary.fileSystemOps.MusicFile
 
 class MusicbrainzSearch{
 
-    companion object: DatabaseSearch{
+    companion object: IDatabaseSearch{
         override fun attemptRetrieveMetaTags(musicFile: MusicFile): MusicFile {
             //TODO implement this
             return super.attemptRetrieveMetaTags(musicFile)

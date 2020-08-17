@@ -1,10 +1,8 @@
 package offlineMusicLibrary.onlineTagMatching.onlineDatabasesSearching
 
-import offlineMusicLibrary.fileSystemOps.MusicFile
+class ItunesSearch: IDatabaseSearch {
 
-class ItunesSearch: DatabaseSearch {
-
-    companion object: DatabaseSearch{
+    companion object: IDatabaseSearch{
 
     }
 }
