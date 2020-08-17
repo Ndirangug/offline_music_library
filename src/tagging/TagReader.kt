@@ -1,6 +1,5 @@
 package offlineMusicLibrary.tagging
 
-import offlineMusicLibrary.fileSystemOps.MusicFile
 import org.jaudiotagger.audio.AudioFile
 import org.jaudiotagger.audio.AudioFileIO
 import org.jaudiotagger.tag.FieldKey
@@ -8,40 +7,12 @@ import org.jaudiotagger.tag.Tag
 import java.io.File
 import java.io.FileNotFoundException
 import java.nio.file.Path
-import java.time.Year
 
-class TagReader(private var listOfFilePathsToBeProcessed: MutableList<Path>) {
-
-    fun createMusicFileObjectsFromListOfFilePathsToBeProcessed(): MutableList<MusicFile> {
-        val musicList = mutableListOf<MusicFile>()
-
-        for (path: Path in listOfFilePathsToBeProcessed) {
-
-            val tags = readID3TagsFromFilePath(path)
+class TagReader : ITagReaderValidator {
 
 
-            musicList.add(
-                MusicFile(
-                    path,
-                    tags.getOrDefault("title", ""),
-                    tags.getOrDefault("album", ""),
-                    tags.getOrDefault("albumArtist", ""),
-                    tags.getOrDefault("contributingArtists", "").split('/'),
-                    tags.getOrDefault("genre", ""),
-                    Year.parse(
-                        tags.getOrDefault("year", "0000").split('-')[0]
-                    ), // tag comes in the format yyyy-mm-dd so split it with '-' as the delimiter and take only the first sclice i.e  YYYY
-                    tags.getOrDefault("trackNumber", "0").toInt(),
-                    tags.getOrDefault("trackLength", ""),
-                    tags.getOrDefault("numberOfEmptyFields", "0").toInt()
-                )
-            )
-        }
 
-        return musicList
-    }
-
-    private fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
+     fun readID3TagsFromFilePath(filePath: Path): HashMap<String, String> {
 
         val fileHandle = File(filePath.toString())
         val hashMapOfTags: HashMap<String, String>
