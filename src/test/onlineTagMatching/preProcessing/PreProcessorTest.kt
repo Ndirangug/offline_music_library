@@ -4,6 +4,7 @@ import assertions.IMusicListAssertions
 import offlineMusicLibrary.fileSystemOps.FileTypes
 import offlineMusicLibrary.fileSystemOps.MusicFile
 import offlineMusicLibrary.fileSystemOps.MusicFilesLoader
+import offlineMusicLibrary.musicFilesPreparation.MusicFileCreator
 import offlineMusicLibrary.onlineTagMatching.preProcessing.PreProcessor
 import offlineMusicLibrary.tagging.TagReader
 import org.junit.jupiter.api.Test
@@ -71,7 +72,7 @@ internal class PreProcessorTest: IMusicListAssertions{
 
         val musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
         val listOfFilePathsToBeProcessed = musicFilesLoader.getMusicFilesToBeProcessed()
-        return TagReader(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
+        return MusicFileCreator(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
     }
 
     @Test
