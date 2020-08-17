@@ -11,5 +11,15 @@ interface IMusicListAssertions {
         }
     }
 
+    fun <T> assertMapEqual(expected: Map<String, T>, actual: Map<String, T>) {
+
+        assertEquals(expected.toString(), actual.toString())
+//        for (i in actual) {
+//            assertEquals(expected[i.key], i.value)
+//
+//            //TODO  maybe find a more effecient way for this
+//
+//        }
+    }
 
 }
