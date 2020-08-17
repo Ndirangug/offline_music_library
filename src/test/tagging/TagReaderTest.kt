@@ -1,5 +1,6 @@
 package tagging
 
+import annotations.LearningTest
 import assertions.IMusicListAssertions
 import offlineMusicLibrary.tagging.TagReader
 import org.jaudiotagger.audio.AudioFileIO
@@ -79,8 +80,8 @@ internal class TagReaderTest : IMusicListAssertions {
 
 
 
-
-    @Test       // learning test
+    @LearningTest
+    @Test
     fun tryToReadEmptyAudioHeaderReturnsEmptyString(){
         val filePath = Paths.get("test_assets/Cory_Asbury_Endless_Alleluia.hd.ogg").toAbsolutePath()
         val fileHandle = File(filePath.toString())
@@ -99,7 +100,8 @@ internal class TagReaderTest : IMusicListAssertions {
         assertEquals(expectedTrackLength, actualTrackLength)
     }
 
-    @Test   // learning test
+    @LearningTest
+    @Test
     fun tryToReadAudioHeaderTrackLenthReturnsSeconds(){
         val filePath = Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath()
         val fileHandle = File(filePath.toString())
