@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 
 import java.nio.file.Paths
 import java.time.Year
+import kotlin.test.assertEquals
 
 internal class MusicbrainzSearchTest {
 
@@ -38,5 +39,6 @@ internal class MusicbrainzSearchTest {
         )
         val actual = MusicbrainzSearch.attemptRetrieveMetaTags(musicFileToBeUpdated)
 
+        assertEquals(expected, actual)
     }
 }
