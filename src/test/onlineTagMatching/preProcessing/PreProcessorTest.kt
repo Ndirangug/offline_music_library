@@ -72,7 +72,7 @@ internal class PreProcessorTest: IMusicListAssertions{
 
         val musicFilesLoader = MusicFilesLoader(folderWithFiles, allowableFileTypes)
         val listOfFilePathsToBeProcessed = musicFilesLoader.getMusicFilesToBeProcessed()
-        return MusicFileCreator(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
+        return MusicFileCreator.createMusicFileObjectsFromListOfFilePathsToBeProcessed(listOfFilePathsToBeProcessed)
     }
 
     @Test

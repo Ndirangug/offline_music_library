@@ -65,7 +65,7 @@ internal class MusicFileCreatorTest : IMusicListAssertions{
             )
         )
 
-        val actual = MusicFileCreator(listOfFilePathsToBeProcessed).createMusicFileObjectsFromListOfFilePathsToBeProcessed()
+        val actual = MusicFileCreator.createMusicFileObjectsFromListOfFilePathsToBeProcessed(listOfFilePathsToBeProcessed)
 
         assertListEqual(expected, actual)
 
