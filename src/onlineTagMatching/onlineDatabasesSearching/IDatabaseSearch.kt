@@ -10,8 +10,7 @@ interface IDatabaseSearch: ITextualSearch {
     }
 
     fun search(musicFile: MusicFile): HashMap<String, String> {
-        //first try fileNameFragments after determining that its not random sequence
-        //if not work fallback to pre existing tags
+        //inheriting classes/companion objects to implement this
         return hashMapOf()
     }
 
