@@ -27,7 +27,7 @@ class MusicFileCreator{
                 tags.getOrDefault("title", ""),
                 tags.getOrDefault("album", ""),
                 tags.getOrDefault("albumArtist", ""),
-                tags.getOrDefault("contributingArtists", "").split('/'),
+                tags.getOrDefault("contributingArtists", "").replace("[", "").replace("]", "").split('/'),
                 tags.getOrDefault("genre", ""),
                 Year.parse(
                     tags.getOrDefault("year", "0000").split('-')[0]

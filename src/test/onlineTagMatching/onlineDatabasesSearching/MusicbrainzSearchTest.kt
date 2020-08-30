@@ -18,6 +18,7 @@ internal class MusicbrainzSearchTest {
     fun attemptRetrieveMetaTags() {
         val musicFileToBeUpdated =  MusicFile(
             filePath = Paths.get("test_assets/Cory_Asbury_Endless_Alleluia.hd.ogg").toAbsolutePath(),
+            //filePath = Paths.get("test_assets/(10) Man of Your Word (feat. Chandler Moore & KJ Scriven) - Maverick City _ TRIBL - YouTube-converted.mp3").toAbsolutePath(),
             title = "",
             album = "",
             albumArtist = "",
@@ -37,9 +38,9 @@ internal class MusicbrainzSearchTest {
             contributingArtists = listOf<String>("Bethel Music","Cory Asbury"),
             genre = "",
             year = Year.parse("2019"),
-            trackNumber = 14,
-            trackLength = "",
-            numberOfEmptyFields = 2
+            trackNumber = 0, //TODO place correctt value here
+            trackLength = "323",
+            numberOfEmptyFields = 0 //TODO place correctt value here
         )
         val actual = MusicbrainzSearch.attemptRetrieveMetaTags(musicFileToBeUpdated)
 
