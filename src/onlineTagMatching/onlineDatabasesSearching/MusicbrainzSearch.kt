@@ -15,6 +15,7 @@ class MusicbrainzSearch{
         //Only these two need to be customized.The rest of the methods, from IDatabaseSearch, the inherited implementations already work perfectly
         //for all use cases
         override var fileNameFragments = listOf<String>()
+        override var preliminaryResults = listOf(hashMapOf<String, String>())
 
         override fun search(musicFile: MusicFile): HashMap<String, String> {
             //TODO implement this
@@ -39,17 +40,17 @@ class MusicbrainzSearch{
 
                 checkIfArtistMatches(results)
 
-                while (recording.hasMore()){
-                    results = recording.nextSearchResultPage
-
-                    checkIfArtistMatches(results)
-                    pagesCovered++
-
-                    if (pagesCovered >= 2){
-                        println("stopping now...covered " + pagesCovered + "pages")
-                        break@outerloop
-                    }
-                }
+//                while (recording.hasMore()){
+//                    results = recording.nextSearchResultPage
+//
+//                    checkIfArtistMatches(results)
+//                    pagesCovered++
+//
+//                    if (pagesCovered >= 1){
+//                        println("stopping now...covered " + pagesCovered + "pages")
+//                        break@outerloop
+//                    }
+//                }
 
 
             }

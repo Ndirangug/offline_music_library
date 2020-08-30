@@ -5,6 +5,8 @@ import offlineMusicLibrary.musicFilesPreparation.MusicFileCreator
 
 interface IDatabaseSearch {
 
+    var preliminaryResults: List<HashMap<String, String>>
+
     fun attemptRetrieveMetaTags(musicFile: MusicFile): MusicFile {
         val searchResults = search(musicFile)
        return updateMusicFile(musicFile, searchResults)
