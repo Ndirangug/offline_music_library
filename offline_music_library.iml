@@ -31,5 +31,16 @@
     </orderEntry>
     <orderEntry type="library" name="jaudiotagger-2.2.3-javadoc" level="project" />
     <orderEntry type="library" name="org.hamcrest:hamcrest:2.2" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/Compressed/musicbrainzws2-java/musicbrainzws2-java/dist/musicbrainzws2-java.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Downloads/Compressed/musicbrainzws2-java/musicbrainzws2-java/dist/musicbrainzws2-java.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
